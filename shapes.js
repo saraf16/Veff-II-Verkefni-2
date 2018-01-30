@@ -29,7 +29,10 @@ Rectangle.prototype.constructor = Rectangle;
 //bara út filltir vantar fyrir ekki utfilta
 Rectangle.prototype.render = function () { // er i fucki ef það er ekki fillRect
   //render a Rectangle
-  drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
+  drawio.ctx.beginPath();
+      drawio.ctx.rect(this.position.x, this.position.y, this.width, this.height);
+  drawio.ctx.stroke();
+//  drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
 
   //drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 };
@@ -39,9 +42,10 @@ Rectangle.prototype.resize = function (x, y) {
   this.height = y - this.position.y;
 };
 
-function Circle(position, radios) {
+function Circle(position, radius) {
   Shape.call(this, position);
-  this.radios = radios;
+  this.radius = radius;
+  console.log(radius);
 }
 
 Circle.prototype = Object.create(Shape.prototype);
@@ -49,14 +53,14 @@ Circle.prototype.constructor = Circle;
 
 Circle.prototype.render = function () {
   drawio.ctx.beginPath();
-  drawio.ctx.arc(this.position.x, this.position.y, this.radios , 0,  Math.PI * 2);
+  drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2, false);
   drawio.ctx.fill();
   drawio.ctx.stroke();
   drawio.ctx.closePath();
 };
 
-Circle.prototype.resize = function (radios) {
-  this.radios = 50; //kann ekki
+Circle.prototype.resize = function (radius) {
+  this.radius = 50; //kann ekki
 };
 
 function Line(position, xMoved, yMoved) { //virkar ekki
@@ -69,9 +73,9 @@ Line.prototype = Object.create(Shape.prototype);
 Line.prototype.constructor = Line;
 
 Line.prototype.render = function () {
-  drawio.cxt.strokeStyle = "#df4b26";
+  drawio.ctx.strokeStyle = "#df4b26";
   drawio.ctx.lineWidth = 5;
-  drawio.ctc.beginPath();
+  drawio.ctx.beginPath();
   drawio.ctx.moveTo(this.position.x, this.position.y);
   drawio.ctx.lineTo(this.xMoved, this.yMoved);
   drawio.ctx.stroke();
