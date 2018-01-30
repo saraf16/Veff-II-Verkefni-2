@@ -53,17 +53,17 @@ Circle.prototype.constructor = Circle;
 
 Circle.prototype.render = function () {
   drawio.ctx.beginPath();
-  drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2, false);
-  drawio.ctx.fill();
+  drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2, true);
+//  drawio.ctx.fill();
   drawio.ctx.stroke();
   drawio.ctx.closePath();
 };
 
-Circle.prototype.resize = function (radius) {
-  this.radius = 50; //kann ekki
+Circle.prototype.resize = function (x) {
+  this.radius = x - this.position.x;
 };
 
-function Line(position, xMoved, yMoved) { //virkar ekki
+function Line(position, xMoved, yMoved) {
   Shape.call(this, position);
   this.yMoved = xMoved;
   this.yMoved = yMoved;
