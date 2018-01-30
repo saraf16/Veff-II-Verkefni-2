@@ -53,7 +53,8 @@ Circle.prototype.constructor = Circle;
 
 Circle.prototype.render = function () {
   drawio.ctx.beginPath();
-  drawio.ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2, true);
+  // tek absolute value af radius til að geta gert hring í báðar áttir
+  drawio.ctx.arc(this.position.x, this.position.y, Math.abs(this.radius), 0, Math.PI * 2, true);
 //  drawio.ctx.fill();
   drawio.ctx.stroke();
   drawio.ctx.closePath();
