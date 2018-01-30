@@ -3,10 +3,10 @@
 */
 
 //öll önnur föll eiga erfa
-function Shape(position, color, lineWidth = 5) {
+function Shape(position) {
   this.position = position;
   this.color = drawio.selectColor;
-  this.lineWidth = lineWidth;
+  this.lineWidth = 5;
 };
 
 Shape.prototype.render = function () {};
@@ -60,8 +60,7 @@ Circle.prototype.render = function () {
   drawio.ctx.lineWidth = this.lineWidth;
   drawio.ctx.beginPath();
   // tek absolute value af radius til að geta gert hring í báðar áttir
-  drawio.ctx.arc(this.position.x, this.position.y, Math.abs(this.radius), 0, Math.PI * 2, true);
-//  drawio.ctx.fill();
+  drawio.ctx.arc(this.position.x, this.position.y, Math.abs(this.radius), 0, Math.PI * 2, true);//  drawio.ctx.fill();
   drawio.ctx.stroke();
   drawio.ctx.closePath();
 };
@@ -97,7 +96,7 @@ Line.prototype.resize = function (x, y) {
 };
 
 function Texxt(text, position, width) {
-  this.text = 'Hallo';
+  this.text = text;
   Shape.call(this, position, this.color, this.lineWidth);
   this.width = width;
 }
@@ -105,12 +104,31 @@ function Texxt(text, position, width) {
 Texxt.prototype = Object.create(Shape.prototype);
 Texxt.prototype.constructor = Texxt;
 
-Texxt.prototype.render = function () {
-  drawio.ctx.strokeStyle = this.color;
-  drawio.ctx.lineWidth = this.lineWidth;
-  drawio.ctx.font = '30px Helvetica';
-  drawio.ctx.fillText(this.text , this.position.x, this.position.y, this.width);
 
+Texxt.prototype.render = function () {
+      function wrapText (text, x, y, maxWidth, lineHeight) {
+      var words = text.split(' ');
+      var line = ' ';
+
+      for (var i = 0; i < words.length; i++) {
+        var testLine = line + words[i];
+        var m = drawio.ctx.measureText(testLine);
+        var testWidth = m.width;
+        if (testWidth > maxWidth && i > 0){
+          drawio.ctx.fillText(line, x, y);
+          line = words[i];
+          y += lineHeight;
+        }
+        else{
+          line = testLine;
+        }
+        drawio.ctx.fillText(line, x, y);
+      }
+    }
+    drawio.ctx.strokeStyle = this.color;
+    drawio.ctx.lineWidth = this.lineWidth;
+    drawio.ctx.font = '50px Helvetica';
+    wrapText(this.text , this.position.x, this.position.y, 50, 20);
 };
 
 Texxt.prototype.resize = function (x, y) {

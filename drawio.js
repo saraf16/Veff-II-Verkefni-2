@@ -11,6 +11,7 @@ window.drawio = {
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
   selectColor : '#000000',
+  selectText: ' ',
   selectedElement: null,
   availableShapes: {
     RECTANGLE: 'rectangle',
@@ -26,13 +27,17 @@ $(function() {
   //document is loaded and parsed
 
 
-  $(".basic").spectrum({
+  $(".basic-color").spectrum({
       color: drawio.selectColor,
       change: function(color) {
           drawio.selectColor = color.toHexString();
           console.log(drawio.selectColor);
       }
   });
+
+  $('#entertext').click(function(){
+
+});
 
   function drawCanvas() {
     if (drawio.selectedElement) {
@@ -47,9 +52,14 @@ $(function() {
     $('.icon').removeClass('selected');
     $(this).addClass('selected');
     drawio.selectedShape = $(this).data('shape');
-    if(drawio.selectedShape.CLEAR)
-    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+    if (drawio.selectedShape == 'text') {
+        //case drawio.availableShapes.TEXT:
+        $('#words').attr('type', 'text');
 
+    }
+    else {
+        $('#words').attr('type', 'hidden');
+    }
   });
 
   //mousedown
@@ -74,7 +84,9 @@ $(function() {
           }, 0, 0 ,0);
         break;
       case drawio.availableShapes.TEXT:
-        drawio.selectedElement = new Texxt ( ' ',{
+        var fullworld = $("#words").val();
+        drawio.selectText = fullworld;
+        drawio.selectedElement = new Texxt ( drawio.selectText ,{
           x: mouseEvent.offsetX,
           y: mouseEvent.offsetY
         }, 0);

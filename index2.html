@@ -24,10 +24,10 @@
     .icon {
       position: relative;
       display: inline-block;
-      font-size: 4em;
+      font-size: 3em;
       float: right;
       width: 100px;
-      top: 15px;
+      top: 10px;
       transition: : color .5s;
     }
 
@@ -40,7 +40,7 @@
       color: yellow;
     }
 
-    .navbar {
+    .navbarr {
       height: 100px;
       background-color: rgba(50, 100, 200, 0.5);
       border-bottom: solid 6px rgba(50, 100, 200, 1);
@@ -48,10 +48,12 @@
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel='stylesheet' href='http://bgrins.github.io/spectrum/spectrum.css' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 
 <body>
-  <nav class="navbar">
+  <nav class="navbarr"
     <div class="icon selected" data-shape="rectangle">
       <i class="fa fa-square-o" aria-hidden="true"></i>
     </div>
@@ -71,18 +73,35 @@
       <i class="fa fa-eraser" aria-hidden="true"></i>
     </div>
     <div class="icon">
-      <input type='text' class="basic"/>
+      <input type='text' class="basic-color"/>
     </div>
+    <div class="icon">
+      <input type="hidden" id="words" value="word" />
+    </div>
+</div>
   </nav>
+  <div class="dropdown">
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Font
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuFont">
+      <button class="dropdown-item" type="button">Helevetica</button>
+      <button class="dropdown-item" type="button">Times New Roman</button>
+      <button class="dropdown-item" type="button">Verdana</button>
+    </div>
+  </div>
   <div class="container">
     <canvas id="my-canvas" width="800" height="600">
         Not supported
       </canvas>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
  <script src="shapes.js" charset="utf-8"></script>
   <script src="drawio.js" charset="utf-8"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
   <script src='http://bgrins.github.io/spectrum/spectrum.js'></script>
 
   <!--<script src="paint.js" charset="utf-8"></script> -->
