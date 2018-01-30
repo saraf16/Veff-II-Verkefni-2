@@ -77,7 +77,8 @@ $(function() {
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
-      //drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+      drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
       drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
       drawCanvas();
     }
