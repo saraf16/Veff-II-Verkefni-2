@@ -10,6 +10,26 @@
       margin: 0;
     }
 
+    .dropdown {
+      display: inline !important;
+    }
+
+    .dropdown button {
+      width: 100px;
+    }
+
+    .dropdown-font {
+      width: 204px;
+    }
+
+    .dropdown-font-size {
+      width: 100px;
+    }
+
+    .dropdown-menu {
+      min-width: 1em !important;
+    }
+
     .container {
       padding: 20px;
     }
@@ -24,9 +44,9 @@
     .icon {
       position: relative;
       display: inline-block;
-      font-size: 3em;
+      font-size: 4em;
       float: right;
-      width: 100px;
+      width: 90px;
       top: 10px;
       transition: : color .5s;
     }
@@ -53,7 +73,7 @@
 </head>
 
 <body>
-  <nav class="navbarr"
+  <nav class="navbarr">
     <div class="icon selected" data-shape="rectangle">
       <i class="fa fa-square-o" aria-hidden="true"></i>
     </div>
@@ -72,24 +92,42 @@
     <div class="icon" data-shape="clear">
       <i class="fa fa-eraser" aria-hidden="true"></i>
     </div>
-    <div class="icon">
-      <input type='text' class="basic-color"/>
-    </div>
-    <div class="icon">
-      <input type="hidden" id="words" value="word" />
-    </div>
-</div>
   </nav>
+<div class="dropdown">
+  <input type='text' class="basic-color"/>
+</div>
+  <div class="icon">
+    <input type="hidden" id="words" value="word" />
+  </div>
   <div class="dropdown">
     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Font
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuFont">
-      <button class="dropdown-item" type="button">Helevetica</button>
-      <button class="dropdown-item" type="button">Times New Roman</button>
-      <button class="dropdown-item" type="button">Verdana</button>
+    <div class="dropdown-menu dropdown-font" aria-labelledby="dropdownMenuFont">
+      <button class="dropdown-item font-item" type="button">Helevetica</button>
+      <button class="dropdown-item font-item" type="button">Times New Roman</button>
+      <button class="dropdown-item font-item" type="button">Verdana</button>
     </div>
   </div>
+  <div class="dropdown">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Font Size
+  </button>
+  <div class="dropdown-menu dropdown-font-size" aria-labelledby="dropdownMenufontSize">
+    <button class="dropdown-item fontSize-item" type="button">8</button>
+    <button class="dropdown-item fontSize-item" type="button">9</button>
+    <button class="dropdown-item fontSize-item" type="button">10</button>
+    <button class="dropdown-item fontSize-item" type="button">11</button>
+    <button class="dropdown-item fontSize-item" type="button">12</button>
+    <button class="dropdown-item fontSize-item" type="button">14</button>
+    <button class="dropdown-item fontSize-item" type="button">18</button>
+    <button class="dropdown-item fontSize-item" type="button">9</button>
+    <button class="dropdown-item fontSize-item" type="button">24</button>
+    <button class="dropdown-item fontSize-item" type="button">30</button>
+    <button class="dropdown-item fontSize-item" type="button">36</button>
+    <button class="dropdown-item fontSize-item" type="button">48</button>
+  </div>
+</div>
   <div class="container">
     <canvas id="my-canvas" width="800" height="600">
         Not supported

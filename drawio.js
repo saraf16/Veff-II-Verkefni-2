@@ -103,6 +103,15 @@ $(function() {
 
     }
   });
+
+  $('.font-item').click(function() {
+    console.log($(this).text());
+  })
+
+  $('.fontSize-item').click(function() {
+    console.log($(this).text());
+  })
+
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
@@ -122,15 +131,11 @@ $(function() {
   }
   });
 
-  //mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
       if(drawio.selectedShape != 'pen'){
         console.log('not pen');
         drawio.shapes.push(drawio.selectedElement);
-      }
-
-      //console.log(drawio.shapes[0].position.x);
-      //console.log(drawio.selectedElement.position);
+      };
       drawio.selectedElement = null;
 
   });
