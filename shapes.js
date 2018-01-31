@@ -134,3 +134,31 @@ Texxt.prototype.render = function () {
 Texxt.prototype.resize = function (x, y) {
   this.width = x - this.position.x;
 };
+
+function Pen(position, xMoved, yMoved) {
+  Shape.call(this, position, this.color, this.lineWidth);
+  this.xMoved = xMoved;
+  this.yMoved = yMoved;
+};
+
+Pen.prototype = Object.create(Shape.prototype);
+Pen.prototype.constructor = Pen;
+
+Pen.prototype.render = function () {
+  drawio.ctx.strokeStyle = this.color;
+  drawio.ctx.lineWidth = this.lineWidth;
+
+  drawio.ctx.beginPath();
+  drawio.ctx.moveTo(this.xMoved[0], this.yMoved[0]);
+  for (var i = 1; i <= this.xMoved.length; i++) {
+     drawio.ctx.lineTo(this.xMoved[i], this.yMoved[i]);
+  }
+  drawio.ctx.stroke();
+  drawio.ctx.closePath();
+
+};
+
+Pen.prototype.resize = function (x, y) {
+  //this.xMoved.x =  x;
+  //this.yMoved.y = y;
+}

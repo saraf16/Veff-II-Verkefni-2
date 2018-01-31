@@ -7,6 +7,8 @@
 // 2. create an array to hold on to the shapes currently drawn
 window.drawio = {
   shapes: [],
+  pointx: [],
+  pointy: [],
   selectedShape: 'rectangle',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
@@ -53,9 +55,7 @@ $(function() {
     $(this).addClass('selected');
     drawio.selectedShape = $(this).data('shape');
     if (drawio.selectedShape == 'text') {
-        //case drawio.availableShapes.TEXT:
         $('#words').attr('type', 'text');
-
     }
     else {
         $('#words').attr('type', 'hidden');
@@ -91,22 +91,46 @@ $(function() {
           y: mouseEvent.offsetY
         }, 0);
       break;
+      case drawio.availableShapes.PEN:
+        drawio.pointx.push(mouseEvent.offsetX);
+        drawio.pointy.push(mouseEvent.offsetY);
+        drawio.selectedElement = new Pen ({
+          x: 0,
+          y: 0
+        }, drawio.pointx, drawio.pointy );
+      break;
+
+
     }
   });
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
-
-      drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-      drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-      drawCanvas();
-    }
+        if(drawio.selectedShape == 'pen'){
+            console.log('pen');
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawCanvas();
+            drawio.pointx.push(mouseEvent.offsetX);
+            drawio.pointy.push(mouseEvent.offsetY);
+          }
+          else {
+            console.log('not pen');
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+            drawCanvas();
+          }
+  }
   });
 
   //mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
-      drawio.shapes.push(drawio.selectedElement);
-      console.log(drawio.shapes);
+      if(drawio.selectedShape != 'pen'){
+        console.log('not pen');
+        drawio.shapes.push(drawio.selectedElement);
+      }
+
+      //console.log(drawio.shapes[0].position.x);
+      //console.log(drawio.selectedElement.position);
       drawio.selectedElement = null;
 
   });
