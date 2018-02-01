@@ -66,6 +66,33 @@ $(function() {
           drawio.shapes[i].render();  //er að koma upp vesen
       //}
     }
+  };
+
+  $('#undo').click(function() {
+    if(drawio.shapes.length > 0) {
+      drawio.undoBuffer.push(drawio.shapes.pop());
+      drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+      for (var i = 0; i < drawio.shapes.length; i++) {
+        drawio.shapes[i].render();
+      }
+    }
+  });
+
+  $('#redo').click(function() {
+    if(drawio.undoBuffer.length > 0) {
+      drawio.shapes.push(drawio.undoBuffer.pop());
+      drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+      for (var i = 0; i < drawio.shapes.length; i++) {
+        drawio.shapes[i].render();
+      }
+    }
+  });
+
+  function clearCanvas() {
+    drawio.shapes = [];
+
   }
 
   $('.icon').on('click', function() {
@@ -143,12 +170,8 @@ $(function() {
           y: 0
         }, drawio.pointx, drawio.pointy );
       break;
-      case drawio.availableShapes.CLEAR:
-        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-      break;
     }
   });
-
 
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
@@ -168,6 +191,7 @@ $(function() {
             drawCanvas();
           }
     }
+
   });
 
   // mouseup
