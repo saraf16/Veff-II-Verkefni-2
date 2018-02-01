@@ -1,10 +1,4 @@
-/*
-  structure for the assigment 2 project
-*/
 
-// 1. define a function namespace called drawio
-
-// 2. create an array to hold on to the shapes currently drawn
 window.drawio = {
   shapes: [],
   pointx: [],

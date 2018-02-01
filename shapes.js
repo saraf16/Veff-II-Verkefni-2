@@ -1,13 +1,9 @@
-/**
-  defin the shapes
-*/
 
-//öll önnur föll eiga erfa
 function Shape(position) {
   this.position = position;
   this.color = drawio.selectColor;
   this.lineWidth = drawio.selectLineWith;
-};
+}
 
 Shape.prototype.render = function () {};
 
@@ -22,24 +18,21 @@ function Rectangle(position, width, height) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.width = width;
   this.height = height;
-};
+}
 
 // assign the prototype
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
 //bara út filltir vantar fyrir ekki utfilta
-Rectangle.prototype.render = function () { // er i fucki ef það er ekki fillRect
-  //render a Rectangle
+Rectangle.prototype.render = function () {
   drawio.ctx.strokeStyle = this.color;
   drawio.ctx.lineWidth = this.lineWidth;
   drawio.ctx.beginPath();
   drawio.ctx.rect(this.position.x, this.position.y, this.width, this.height);
   drawio.ctx.stroke();
   drawio.ctx.closePath();
-//  drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
 
-  //drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
 };
 
 Rectangle.prototype.resize = function (x, y) {
@@ -74,7 +67,7 @@ function Line(position, xMoved, yMoved) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.yMoved = xMoved;
   this.yMoved = yMoved;
-};
+}
 
 Line.prototype = Object.create(Shape.prototype);
 Line.prototype.constructor = Line;
@@ -138,12 +131,3 @@ Pen.prototype.render = function () {
   drawio.ctx.closePath();
 
 };
-
-function Clear() {};
-
-Clear.prototype = Object.create(Shape.prototype);
-Clear.prototype.constructor = Pen;
-
-Clear.prototype.render = function () {
-  clearCanvas();
-}
