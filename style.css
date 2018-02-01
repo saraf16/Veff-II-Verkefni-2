@@ -39,6 +39,10 @@ body {
   box-shadow: 1px 1px 1px;
 }
 
+.inputTextCust{
+    font-size: 14px !important;
+}
+
 .icon {
   position: relative;
   display: inline-block;
