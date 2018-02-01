@@ -9,6 +9,7 @@ window.drawio = {
   shapes: [],
   pointx: [],
   pointy: [],
+  undoBuffer: [],
   selectedShape: 'rectangle',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
@@ -99,10 +100,32 @@ $(function() {
           y: 0
         }, drawio.pointx, drawio.pointy );
       break;
+  /*    case drawio.availableShapes.CLEAR:
+        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+      break;
+*/
 
 
     }
   });
+
+  $('#undo').click(function() {
+    drawio.undoBuffer.push(drawio.shapes.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+    }
+  })
+
+  $('#redo').click(function() {
+    drawio.shapes.push(drawio.undoBuffer.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+    }
+  })
 
   $('.font-item').click(function() {
     console.log($(this).text());
@@ -118,9 +141,10 @@ $(function() {
         if(drawio.selectedShape == 'pen'){
             console.log('pen');
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            drawCanvas();
             drawio.pointx.push(mouseEvent.offsetX);
             drawio.pointy.push(mouseEvent.offsetY);
+            drawCanvas();
+
           }
           else {
             console.log('not pen');
@@ -128,15 +152,15 @@ $(function() {
             drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
             drawCanvas();
           }
-  }
+    }
   });
 
+  // mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
-      if(drawio.selectedShape != 'pen'){
-        console.log('not pen');
-        drawio.shapes.push(drawio.selectedElement);
-      };
+      drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
+      drawio.pointx = [];
+      drawio.pointy = [];
 
   });
 });
