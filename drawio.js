@@ -59,19 +59,39 @@ $(function() {
     for (var i = 0; i < drawio.shapes.length; i++) {
       if(drawio.shapes[i].render() != null){
       drawio.shapes[i].render();  //er að koma upp vesen
-      } 
+      }
     }
 
-  };
+  }
+
+  $('#undo').click(function() {
+    drawio.undoBuffer.push(drawio.shapes.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+    }
+});
+
+  $('#redo').click(function() {
+    drawio.shapes.push(drawio.undoBuffer.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+    }
+});
 
   $('.icon').on('click', function() {
     $('.icon').removeClass('selected');
     $(this).addClass('selected');
     drawio.selectedShape = $(this).data('shape');
     if (drawio.selectedShape == 'text') {
+        console.log('sést');
         $('#words').attr('type', 'text');
     }
     else {
+        console.log('falið');
         $('#words').attr('type', 'hidden');
     }
   });
@@ -122,35 +142,6 @@ $(function() {
     }
   });
 
-<<<<<<< HEAD
-=======
-  $('#undo').click(function() {
-    drawio.undoBuffer.push(drawio.shapes.pop());
-    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-
-    for (var i = 0; i < drawio.shapes.length; i++) {
-      drawio.shapes[i].render();
-    }
-  })
-
-  $('#redo').click(function() {
-    drawio.shapes.push(drawio.undoBuffer.pop());
-    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-
-    for (var i = 0; i < drawio.shapes.length; i++) {
-      drawio.shapes[i].render();
-    }
-  })
-
-  $('.font-item').click(function() {
-    console.log($(this).text());
-  })
-
-  $('.fontSize-item').click(function() {
-    console.log($(this).text());
-  })
-
->>>>>>> 4f77ddd2c37f2444bfa28a4a8a27dc72cbb5ed96
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
@@ -166,28 +157,19 @@ $(function() {
             console.log('not pen');
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
             drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-            drawCanvas(); // og hér
+            drawCanvas();
           }
-<<<<<<< HEAD
-        }
-=======
     }
->>>>>>> 4f77ddd2c37f2444bfa28a4a8a27dc72cbb5ed96
   });
 
   // mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
-<<<<<<< HEAD
-      if(drawio.selectedShape != 'pen'){
-        console.log('not pen');
-        drawio.shapes.push(drawio.selectedElement);
+      if(drawio.selectedElement) {
+          drawio.shapes.push(drawio.selectedElement);
+          drawio.selectedElement = null;
+          drawio.pointx = [];
+          drawio.pointy = [];
       }
-=======
-      drawio.shapes.push(drawio.selectedElement);
->>>>>>> 4f77ddd2c37f2444bfa28a4a8a27dc72cbb5ed96
-      drawio.selectedElement = null;
-      drawio.pointx = [];
-      drawio.pointy = [];
 
   });
 });

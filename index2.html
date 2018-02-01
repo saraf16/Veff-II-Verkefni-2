@@ -15,7 +15,7 @@
 <body>
   <nav class="navbarr">
     <div class="icon selected" data-shape="rectangle">
-      <i class="fa fa-square-o" aria-hidden="true"></i>
+      <i class="fas fa-undo" aria-hidden="true"></i>
     </div>
     <div class="icon" data-shape="circle">
       <i class="fa fa-circle-o" aria-hidden="true"></i>
@@ -32,19 +32,16 @@
     <div class="icon" data-shape="clear">
       <i class="fa fa-eraser" aria-hidden="true"></i>
     </div>
-    <div>
-      <button id="undo" type="button">Undo</button>
-      <button id="redo" type="button" >Redo</button>
-
+    <div class="icon" data-shape="undo">
+        <i class="fa fa-undo" aria-hidden="true"></i>
     </div>
-
+    <div class="icon" data-shape="redo">
+         <i class="fa fa-repeat" aria-hidden="true"></i>
+    </div>
   </nav>
-<div class="dropdown">
+<div class="dropdown inputCust">
   <input type='text' class="basic-color"/>
 </div>
-  <div class="icon">
-    <input type="hidden" id="words" value="word" />
-  </div>
   <div class="dropdown">
     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Font
@@ -84,8 +81,11 @@
     </div>
   </div>
 </div>
+<div class="dropdown">
+  <input type="hidden" id="words" value="Input text" />
+</div>
   <div class="container">
-    <canvas id="my-canvas" width="800" height="600">
+    <canvas id="my-canvas" width="930" height="600">
         Not supported
       </canvas>
   </div>
