@@ -39,15 +39,28 @@ $(function() {
 
   $('#entertext').click(function(){
 
-});
+  });
+
+  $('.font-item').click(function() {
+    console.log($(this).text());
+  });
+
+  $('.fontSize-item').click(function() {
+    console.log($(this).text());
+  });
 
   function drawCanvas() {
+
     if (drawio.selectedElement) {
         drawio.selectedElement.render();
     }
+
     for (var i = 0; i < drawio.shapes.length; i++) {
-      drawio.shapes[i].render();
+      if(drawio.shapes[i].render() != null){
+      drawio.shapes[i].render();  //er að koma upp vesen
+      } 
     }
+
   };
 
   $('.icon').on('click', function() {
@@ -104,14 +117,6 @@ $(function() {
     }
   });
 
-  $('.font-item').click(function() {
-    console.log($(this).text());
-  })
-
-  $('.fontSize-item').click(function() {
-    console.log($(this).text());
-  })
-
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
@@ -126,16 +131,16 @@ $(function() {
             console.log('not pen');
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
             drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-            drawCanvas();
+            drawCanvas(); // og hér
           }
-  }
+        }
   });
 
   $('#my-canvas').on('mouseup', function (mouseEvent) {
       if(drawio.selectedShape != 'pen'){
         console.log('not pen');
         drawio.shapes.push(drawio.selectedElement);
-      };
+      }
       drawio.selectedElement = null;
 
   });

@@ -4,71 +4,11 @@
 <head>
   <meta charset="utf-8">
   <title>HTML5 Canvas</title>
-  <style media="screen">
-    body {
-      padding: 0;
-      margin: 0;
-    }
-
-    .dropdown {
-      display: inline !important;
-    }
-
-    .dropdown button {
-      width: 100px;
-    }
-
-    .dropdown-font {
-      width: 204px;
-    }
-
-    .dropdown-font-size {
-      width: 100px;
-    }
-
-    .dropdown-menu {
-      min-width: 1em !important;
-    }
-
-    .container {
-      padding: 20px;
-    }
-
-    #my-canvas {
-      background-color: rgba(155, 155, 155, 0.2);
-      box-shadow: 1px 1px 1px;
-      margin: 0 auto;
-      display: block;
-    }
-
-    .icon {
-      position: relative;
-      display: inline-block;
-      font-size: 4em;
-      float: right;
-      width: 90px;
-      top: 10px;
-      transition: : color .5s;
-    }
-
-    .icon:hover {
-      color: orange;
-      cursor: pointer;
-    }
-
-    .icon.selected {
-      color: yellow;
-    }
-
-    .navbarr {
-      height: 100px;
-      background-color: rgba(50, 100, 200, 0.5);
-      border-bottom: solid 6px rgba(50, 100, 200, 1);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel='stylesheet' href='http://bgrins.github.io/spectrum/spectrum.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
 </head>
 
@@ -126,6 +66,16 @@
     <button class="dropdown-item fontSize-item" type="button">30</button>
     <button class="dropdown-item fontSize-item" type="button">36</button>
     <button class="dropdown-item fontSize-item" type="button">48</button>
+  </div>
+  <div class="dropdown">
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Line Width
+    </button>
+    <div class="dropdown-menu dropdown-LineWidth" aria-labelledby="dropdownLineWidth-item">
+      <button class="dropdown-item lineWidth-item" type="button">1</button>
+      <button class="dropdown-item lineWidth-item" type="button">2</button>
+      <button class="dropdown-item lineWidth-item" type="button">3</button>
+    </div>
   </div>
 </div>
   <div class="container">

@@ -161,4 +161,4 @@ Pen.prototype.render = function () {
 Pen.prototype.resize = function (x, y) {
   //this.xMoved.x =  x;
   //this.yMoved.y = y;
-}
+};
