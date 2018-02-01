@@ -36,6 +36,7 @@ Rectangle.prototype.render = function () { // er i fucki ef það er ekki fillRe
   drawio.ctx.beginPath();
   drawio.ctx.rect(this.position.x, this.position.y, this.width, this.height);
   drawio.ctx.stroke();
+  drawio.ctx.closePath();
 //  drawio.ctx.strokeRect(this.position.x, this.position.y, this.width, this.height);
 
   //drawio.ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
