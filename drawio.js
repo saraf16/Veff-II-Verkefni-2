@@ -100,6 +100,10 @@ $(function() {
               drawio.shapes[j].render();
             }
         break;
+        case drawio.availableShapes.CLEAR:
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawio.shapes = [];
+        break;
         default:
             console.log('falið');
             $('#words').attr('type', 'hidden');
