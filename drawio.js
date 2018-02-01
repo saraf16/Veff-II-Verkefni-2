@@ -119,13 +119,15 @@ $(function() {
   })
 
   $('#redo').click(function() {
-    drawio.shapes.push(drawio.undoBuffer.pop());
-    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+    if (drawio.undoBuffer.length > 0) {
+      drawio.shapes.push(drawio.undoBuffer.pop());
+      drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
 
-    for (var i = 0; i < drawio.shapes.length; i++) {
-      drawio.shapes[i].render();
+      for (var i = 0; i < drawio.shapes.length; i++) {
+        drawio.shapes[i].render();
+      }
     }
-  })
+  });
 
   $('.font-item').click(function() {
     console.log($(this).text());
@@ -145,13 +147,13 @@ $(function() {
             drawio.pointy.push(mouseEvent.offsetY);
             drawCanvas();
 
-          }
-          else {
-            console.log('not pen');
-            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-            drawCanvas();
-          }
+        }
+        else {
+          console.log('not pen');
+          drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+          drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+          drawCanvas();
+        }
     }
   });
 
