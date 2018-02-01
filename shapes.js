@@ -107,40 +107,18 @@ Texxt.prototype.constructor = Texxt;
 
 
 Texxt.prototype.render = function () {
-      function wrapText (text, x, y, maxWidth, lineHeight) {
-      var words = text.split(' ');
-      var line = ' ';
-
-      for (var i = 0; i < words.length; i++) {
-        var testLine = line + words[i];
-        var m = drawio.ctx.measureText(testLine);
-        var testWidth = m.width;
-        if (testWidth > maxWidth && i > 0){
-          drawio.ctx.fillText(line, x, y);
-          line = words[i];
-          y += lineHeight;
-        }
-        else{
-          line = testLine;
-        }
-        drawio.ctx.fillText(line, x, y);
-      }
-    }
     drawio.ctx.strokeStyle = this.color;
     drawio.ctx.lineWidth = this.lineWidth;
     drawio.ctx.font = '50px Helvetica';
-    wrapText(this.text , this.position.x, this.position.y, 50, 20);
+    drawio.ctx.fillText(this.text , this.position.x, this.position.y,  930);
 };
 
-Texxt.prototype.resize = function (x, y) {
-  this.width = x - this.position.x;
-};
 
 function Pen(position, xMoved, yMoved) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.xMoved = xMoved;
   this.yMoved = yMoved;
-};
+}
 
 Pen.prototype = Object.create(Shape.prototype);
 Pen.prototype.constructor = Pen;

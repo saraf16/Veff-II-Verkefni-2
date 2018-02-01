@@ -61,9 +61,30 @@ $(function() {
       if(drawio.shapes[i].render() != null){
       drawio.shapes[i].render();  //er að koma upp vesen
       }
+<<<<<<< HEAD
     }
 
-  };
+  }
+
+  $('#undo').click(function() {
+    drawio.undoBuffer.push(drawio.shapes.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+=======
+>>>>>>> 85d62ba151686ce4323a69670ba589378a04c0c1
+    }
+});
+
+  $('#redo').click(function() {
+    drawio.shapes.push(drawio.undoBuffer.pop());
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+
+    for (var i = 0; i < drawio.shapes.length; i++) {
+      drawio.shapes[i].render();
+    }
+});
 
   function clearCanvas() {
     drawio.shapes = [];
@@ -75,9 +96,11 @@ $(function() {
     $(this).addClass('selected');
     drawio.selectedShape = $(this).data('shape');
     if (drawio.selectedShape == 'text') {
+        console.log('sést');
         $('#words').attr('type', 'text');
     }
     else {
+        console.log('falið');
         $('#words').attr('type', 'hidden');
     }
   });
@@ -125,6 +148,8 @@ $(function() {
     }
   });
 
+<<<<<<< HEAD
+=======
   $('#undo').click(function() {
     drawio.undoBuffer.push(drawio.shapes.pop());
     drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
@@ -153,6 +178,7 @@ $(function() {
     console.log($(this).text());
   })
 
+>>>>>>> 85d62ba151686ce4323a69670ba589378a04c0c1
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
     if(drawio.selectedElement) {
@@ -163,6 +189,16 @@ $(function() {
             drawio.pointy.push(mouseEvent.offsetY);
             drawCanvas();
 
+<<<<<<< HEAD
+          }
+          else {
+            console.log('not pen');
+            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+            drawCanvas();
+          }
+    }
+=======
         }
         else {
           console.log('not pen');
@@ -171,15 +207,25 @@ $(function() {
           drawCanvas(); // og hér
         }
       }
+>>>>>>> 85d62ba151686ce4323a69670ba589378a04c0c1
   });
 
   // mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
+<<<<<<< HEAD
+      if(drawio.selectedElement) {
+          drawio.shapes.push(drawio.selectedElement);
+          drawio.selectedElement = null;
+          drawio.pointx = [];
+          drawio.pointy = [];
+      }
+=======
 
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
       drawio.pointx = [];
       drawio.pointy = [];
+>>>>>>> 85d62ba151686ce4323a69670ba589378a04c0c1
 
   });
 });
