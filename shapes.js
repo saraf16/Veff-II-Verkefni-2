@@ -6,7 +6,7 @@
 function Shape(position) {
   this.position = position;
   this.color = drawio.selectColor;
-  this.lineWidth = 5;
+  this.lineWidth = drawio.selectLineWith;
 };
 
 Shape.prototype.render = function () {};
@@ -96,9 +96,11 @@ Line.prototype.resize = function (x, y) {
 
 };
 
-function Texxt(text, position, fontSize) {
+function Texxt(text, position, fontSize, font) {
   this.text = text;
-  Shape.call(this, position, this.color, this.fontSize);
+  Shape.call(this, position, this.color);
+  this.fontSize = fontSize;
+  this.font = font;
 }
 
 Texxt.prototype = Object.create(Shape.prototype);
@@ -107,8 +109,9 @@ Texxt.prototype.constructor = Texxt;
 
 Texxt.prototype.render = function () {
     drawio.ctx.strokeStyle = this.color;
-    drawio.ctx.fontSize = this.fontSize;
-    drawio.ctx.font = '50px Helvetica';
+    var res = this.fontSize + this.font;
+    console.log(res);
+    drawio.ctx.font = res;
     drawio.ctx.fillText(this.text , this.position.x, this.position.y,  930);
 };
 

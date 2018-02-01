@@ -16,6 +16,9 @@ window.drawio = {
   canvas: document.getElementById('my-canvas'),
   selectColor : '#000000',
   selectText: ' ',
+  selectFont: 'Helvetica',
+  selectFontSize: '36px',
+  selectLineWith: 5,
   selectedElement: null,
   availableShapes: {
     RECTANGLE: 'rectangle',
@@ -27,18 +30,10 @@ window.drawio = {
     REDO: 'redo',
     UNDO: 'undo'
   }
-  /*
-  availableClean: {
-      CLEAR: 'clear',
-      REDO: 'redo',
-      UNDO: 'undo'
-  }*/
 };
 
 $(function() {
   //document is loaded and parsed
-
-
   $(".basic-color").spectrum({
       color: drawio.selectColor,
       change: function(color) {
@@ -47,28 +42,29 @@ $(function() {
       }
   });
 
-  $('#entertext').click(function(){
-
+  $('.lineWidth-item').click(function(){
+      drawio.selectLineWith = $(this).text();
+      console.log($(this).text());
   });
 
   $('.font-item').click(function() {
-    console.log($(this).text());
+      drawio.selectFont = $(this).text();
+     console.log(drawio.selectFont);
   });
 
   $('.fontSize-item').click(function() {
-    console.log($(this).text());
+      drawio.selectFontSize = $(this).text();
+      console.log($(this).text());
   });
 
   function drawCanvas() {
-
     if (drawio.selectedElement) {
         drawio.selectedElement.render();
     }
-
     for (var i = 0; i < drawio.shapes.length; i++) {
-      if (drawio.shapes[i].render() != null){
-        drawio.shapes[i].render();  //er að koma upp vesen
-      }
+      //if(drawio.shapes[i].render() != null){
+          drawio.shapes[i].render();  //er að koma upp vesen
+      //}
     }
   };
 
@@ -107,7 +103,7 @@ $(function() {
         case drawio.availableShapes.TEXT:
             $('#words').attr('type', 'text');
             drawio.selectText = ' ';
-            var fullworld = "";
+            var fullWord = "";
         break;
         case drawio.availableShapes.UNDO:
             console.log('undo');
@@ -159,13 +155,12 @@ $(function() {
           }, 0, 0 ,0);
         break;
       case drawio.availableShapes.TEXT:
-
         var fullWord = $("#words").val();
         drawio.selectText = fullWord;
         drawio.selectedElement = new Texxt ( drawio.selectText ,{
           x: mouseEvent.offsetX,
           y: mouseEvent.offsetY
-        }, 0);
+      }, drawio.selectFontSize, drawio.selectFont);
       break;
       case drawio.availableShapes.PEN:
         drawio.pointx.push(mouseEvent.offsetX);
@@ -174,10 +169,6 @@ $(function() {
           x: 0,
           y: 0
         }, drawio.pointx, drawio.pointy );
-      break;
-
-      case drawio.availableShapes.CLEAR:
-        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
       break;
     }
   });
