@@ -123,8 +123,8 @@ $(function() {
           }, 0, 0 ,0);
         break;
       case drawio.availableShapes.TEXT:
-        var fullworld = $("#words").val();
-        drawio.selectText = fullworld;
+        var fullWord = $("#words").val();
+        drawio.selectText = fullWord;
         drawio.selectedElement = new Texxt ( drawio.selectText ,{
           x: mouseEvent.offsetX,
           y: mouseEvent.offsetY
@@ -168,10 +168,20 @@ $(function() {
   // mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
       if(drawio.selectedElement) {
-          drawio.shapes.push(drawio.selectedElement);
-          drawio.selectedElement = null;
-          drawio.pointx = [];
-          drawio.pointy = [];
+        switch (drawio.selectedShape) {
+          case 'text':
+            drawio.shapes.push(drawio.selectedElement);
+          break;
+          case 'pen':
+            drawio.shapes.push(drawio.selectedElement);
+            drawio.selectedElement = null;
+            drawio.pointx = [];
+            drawio.pointy = [];
+          break;
+          default:
+            drawio.shapes.push(drawio.selectedElement);
+            drawio.selectedElement = null;
+        }
       }
   });
 });

@@ -96,10 +96,9 @@ Line.prototype.resize = function (x, y) {
 
 };
 
-function Texxt(text, position, width) {
+function Texxt(text, position, fontSize) {
   this.text = text;
-  Shape.call(this, position, this.color, this.lineWidth);
-  this.width = width;
+  Shape.call(this, position, this.color, this.fontSize);
 }
 
 Texxt.prototype = Object.create(Shape.prototype);
@@ -108,7 +107,7 @@ Texxt.prototype.constructor = Texxt;
 
 Texxt.prototype.render = function () {
     drawio.ctx.strokeStyle = this.color;
-    drawio.ctx.lineWidth = this.lineWidth;
+    drawio.ctx.fontSize = this.fontSize;
     drawio.ctx.font = '50px Helvetica';
     drawio.ctx.fillText(this.text , this.position.x, this.position.y,  930);
 };
