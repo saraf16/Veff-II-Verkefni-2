@@ -99,9 +99,8 @@ function Texxt(text, position, fontSize, font) {
 Texxt.prototype = Object.create(Shape.prototype);
 Texxt.prototype.constructor = Texxt;
 
-
 Texxt.prototype.render = function () {
-    drawio.ctx.strokeStyle = this.color;
+    drawio.ctx.fillStyle = this.color;
     var res = this.fontSize + this.font;
     console.log(res);
     drawio.ctx.font = res;
