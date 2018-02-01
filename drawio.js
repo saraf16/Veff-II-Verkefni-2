@@ -10,6 +10,7 @@ window.drawio = {
   pointx: [],
   pointy: [],
   undoBuffer: [],
+  dragging: false,
   selectedShape: 'rectangle',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
@@ -64,6 +65,11 @@ $(function() {
 
   };
 
+  function clearCanvas() {
+    drawio.shapes = [];
+
+  }
+
   $('.icon').on('click', function() {
     $('.icon').removeClass('selected');
     $(this).addClass('selected');
@@ -113,12 +119,9 @@ $(function() {
           y: 0
         }, drawio.pointx, drawio.pointy );
       break;
-  /*    case drawio.availableShapes.CLEAR:
+      case drawio.availableShapes.CLEAR:
         drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
       break;
-*/
-
-
     }
   });
 
@@ -129,7 +132,7 @@ $(function() {
     for (var i = 0; i < drawio.shapes.length; i++) {
       drawio.shapes[i].render();
     }
-  })
+  });
 
   $('#redo').click(function() {
     if (drawio.undoBuffer.length > 0) {
@@ -164,7 +167,8 @@ $(function() {
         else {
           console.log('not pen');
           drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-          drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);            drawCanvas(); // og hér
+          drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+          drawCanvas(); // og hér
         }
       }
   });

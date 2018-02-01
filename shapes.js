@@ -159,7 +159,11 @@ Pen.prototype.render = function () {
 
 };
 
-Pen.prototype.resize = function (x, y) {
-  //this.xMoved.x =  x;
-  //this.yMoved.y = y;
-};
+function Clear() {};
+
+Clear.prototype = Object.create(Shape.prototype);
+Clear.prototype.constructor = Pen;
+
+Clear.prototype.render = function () {
+  clearCanvas();
+}
