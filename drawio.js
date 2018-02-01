@@ -40,15 +40,28 @@ $(function() {
 
   $('#entertext').click(function(){
 
-});
+  });
+
+  $('.font-item').click(function() {
+    console.log($(this).text());
+  });
+
+  $('.fontSize-item').click(function() {
+    console.log($(this).text());
+  });
 
   function drawCanvas() {
+
     if (drawio.selectedElement) {
         drawio.selectedElement.render();
     }
+
     for (var i = 0; i < drawio.shapes.length; i++) {
-      drawio.shapes[i].render();
+      if(drawio.shapes[i].render() != null){
+      drawio.shapes[i].render();  //er að koma upp vesen
+      }
     }
+
   };
 
   $('.icon').on('click', function() {
@@ -151,14 +164,14 @@ $(function() {
         else {
           console.log('not pen');
           drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-          drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
-          drawCanvas();
+          drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);            drawCanvas(); // og hér
         }
-    }
+      }
   });
 
   // mouseup
   $('#my-canvas').on('mouseup', function (mouseEvent) {
+
       drawio.shapes.push(drawio.selectedElement);
       drawio.selectedElement = null;
       drawio.pointx = [];
