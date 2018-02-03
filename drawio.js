@@ -8,7 +8,6 @@ window.drawio = {
   selectedShape: 'pen',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
-  pic: document.getElementById('canvasImg').src = dataURL,
   selectColor : '#000000',
   selectText: ' ',
   selectFont: 'Helvetica',
@@ -20,7 +19,7 @@ window.drawio = {
     CIRCLE: 'circle',
     LINE: 'line',
     TEXT: 'text',
-    PEN:'pen',
+    PEN: 'pen',
     CLEAR: 'clear',
     REDO: 'redo',
     UNDO: 'undo'
@@ -115,9 +114,10 @@ $(function() {
         break;
         case drawio.availableShapes.REDO:
             console.log('redo');
-            drawio.shapes.push(drawio.undoBuffer.pop());
-            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-
+            if (drawio.undoBuffer.length > 0) {
+              drawio.shapes.push(drawio.undoBuffer.pop());
+              drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            }
             for (var j = 0; j < drawio.shapes.length; j++) {
               drawio.shapes[j].render();
             }
@@ -200,6 +200,7 @@ $(function() {
         switch (drawio.selectedShape) {
           case 'text':
             drawio.shapes.push(drawio.selectedElement);
+      //      drawio.selectedElement = null;
           break;
           case 'pen':
             drawio.shapes.push(drawio.selectedElement);
@@ -212,7 +213,5 @@ $(function() {
             drawio.selectedElement = null;
         }
       }
-
-      var dataURL = canvas.toDataURL();
   });
 });
