@@ -5,7 +5,7 @@ window.drawio = {
   pointy: [],
   undoBuffer: [],
   dragging: false,
-  selectedShape: 'rectangle',
+  selectedShape: 'pen',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
   pic: document.getElementById('canvasImg').src = dataURL,
@@ -13,7 +13,7 @@ window.drawio = {
   selectText: ' ',
   selectFont: 'Helvetica',
   selectFontSize: '36px',
-  selectLineWith: 5,
+  selectLineWith: 3,
   selectedElement: null,
   availableShapes: {
     RECTANGLE: 'rectangle',
@@ -49,7 +49,38 @@ $(function() {
 
   $('.fontSize-item').click(function() {
       drawio.selectFontSize = $(this).text();
-      console.log($(this).text());
+      console.log($(this).selectFontSize());
+  });
+
+  $('#save').click(function() {
+    console.log('save');
+    for (var i in drawio.shapes) {
+      console.log(drawio.shapes[i]);
+    }
+
+  //  var imageData = drawio.ctx.getImageData(0,0,930,600);
+
+    localStorage.setItem('my-shapes', JSON.stringify(drawio));
+    console.log(JSON.stringify(drawio));
+    //var lines = JSON.parse(localStorage.getItem(drawio.canvas));
+  //  console.log(lines);
+
+    //var idt = drawio.ctx.getImageData(0, 0, 930, 600);
+    //localStorage.setItem('my-canvas', JSON.stringify(drawio.ctx));
+    //localStorage.setItem('my-canvas', drawio.canvas.toDataURL());
+    console.log(drawio.canvas);
+  });
+  console.log(drawio.shapes);
+
+  $('#load').click(function() {
+
+    console.log('load');
+    var savedDrawio = JSON.parse(localStorage.getItem('my-shapes'));
+    console.log(savedDrawio);
+    for (var i in savedDrawio) {
+      savedDrawio[i]
+    }
+//    drawio.shapes = Object.create()
   });
 
   function drawCanvas() {
@@ -92,6 +123,7 @@ $(function() {
             }
         break;
         case drawio.availableShapes.CLEAR:
+
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
             drawio.shapes = [];
         break;
