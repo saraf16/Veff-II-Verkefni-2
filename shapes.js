@@ -103,7 +103,6 @@ Texxt.prototype.render = function() {
     var res = this.fontSize + this.font;
     drawio.ctx.font = res;
     drawio.ctx.fillText(this.text, this.position.x, this.position.y, 930);
-    //á að vera begin path og close ?
 };
 
 

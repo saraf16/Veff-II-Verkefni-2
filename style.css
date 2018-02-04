@@ -71,13 +71,12 @@ body {
     padding-left: 220px;
 }
 
-.optionsLeft{
+.optionsLeft {
     position: relative;
     left: 220px;
 }
 
-
-.optionsRight{
+.optionsRight {
     position: relative;
     left: 950px;
 }
