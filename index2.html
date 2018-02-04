@@ -38,7 +38,7 @@
             <i class="fa fa-trash" aria-hidden="true"></i>
         </div>
     </nav>
-    <div class='options'>
+    <div class='optionsLeft'>
         <div class="dropdown inputCust">
             <input type='text' class="basic-color" />
         </div>
@@ -92,6 +92,17 @@
             </div>
 
         </div>
+        <div class="dropdown inputTextCust">
+            <input type="hidden" autofocus="autofocus" id="words" placeholder="Type, then click canvas" />
+        </div>
+    </div>
+
+    <div class="container">
+        <canvas id="my-canvas" width="930" height="600">
+        Not supported
+      </canvas>
+    </div>
+    <div class="optionsRight">
         <div class="dropdown">
             <button class="btn btn-secondary btn-sm" id="save">
       <span class="fa fa-save"></span>
@@ -103,14 +114,6 @@
       <span class="fa fa-upload"></span>
       Load
     </button></div>
-        <div class="dropdown inputTextCust">
-            <input type="hidden" autofocus="autofocus" id="words" placeholder="Type, then click canvas" />
-        </div>
-    </div>
-    <div class="container">
-        <canvas id="my-canvas" width="930" height="600">
-        Not supported
-      </canvas>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

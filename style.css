@@ -47,11 +47,9 @@ body {
 .icon {
     position: relative;
     display: inline-block;
-    font-size: 40px;
+    font-size: 59px;
     float: left;
-    width: 25px;
-    top: 10px;
-    margin-left: 36px;
+    width: 77px;
     transition: : color .5s;
 }
 
@@ -72,8 +70,13 @@ body {
     padding-left: 220px;
 }
 
-.options {
-    margin-left: 220px;
+.optionsLeft{
+    margin-left: 20px;
+}
+
+
+.optionsRight{
+    margin-left: 745px;
 }
 
 #words {
