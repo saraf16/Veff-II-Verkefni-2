@@ -112,10 +112,12 @@ $(function() {
     switch ($(this).data('shape')) {
     case 'undo':
         console.log('undo');
-        drawio.undoBuffer.push(drawio.shapes.pop());
-        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-        for (var i = 0; i < drawio.shapes.length; i++) {
-          drawio.shapes[i].render();
+        if (drawio.shapes.length > 0) {
+          drawio.undoBuffer.push(drawio.shapes.pop());
+          drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+          for (var i = 0; i < drawio.shapes.length; i++) {
+            drawio.shapes[i].render();
+          }
         }
     break;
     case 'redo':
