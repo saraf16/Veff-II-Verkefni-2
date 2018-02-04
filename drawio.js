@@ -53,40 +53,43 @@ $(function() {
 
   $('#save').click(function() {
     console.log('save');
-    for (var i in drawio.shapes) {
-      console.log(drawio.shapes[i]);
-    }
-
-  //  var imageData = drawio.ctx.getImageData(0,0,930,600);
-
-    localStorage.setItem('my-shapes', JSON.stringify(drawio));
-    console.log(JSON.stringify(drawio));
-    //var lines = JSON.parse(localStorage.getItem(drawio.canvas));
-  //  console.log(lines);
-
-    //var idt = drawio.ctx.getImageData(0, 0, 930, 600);
-    //localStorage.setItem('my-canvas', JSON.stringify(drawio.ctx));
-    //localStorage.setItem('my-canvas', drawio.canvas.toDataURL());
-    console.log(drawio.canvas);
+    localStorage.setItem('my-shapes', JSON.stringify(drawio.shapes));
+    var lines = JSON.parse(localStorage.getItem(drawio.shapes));
   });
-  console.log(drawio.shapes);
 
   $('#load').click(function() {
 
     console.log('load');
     var savedDrawio = JSON.parse(localStorage.getItem('my-shapes'));
-    console.log(savedDrawio);
-    for (var i in savedDrawio) {
-      savedDrawio[i]
+    drawio.shapes = [];
+    drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+    for (let i = 0; i < savedDrawio.length; i++) {
+      switch (savedDrawio[i].type) {
+        case 'rectangle':
+          drawio.shapes.push(Object.assign(Object.create(Rectangle.prototype), savedDrawio[i]));
+          break;
+        case 'circle':
+          drawio.shapes.push(Object.assign(Object.create(Circle.prototype), savedDrawio[i]));
+          break;
+        case 'line':
+          drawio.shapes.push(Object.assign(Object.create(Line.prototype), savedDrawio[i]));
+          break;
+        case 'text':
+          drawio.shapes.push(Object.assign(Object.create(Texxt.prototype), savedDrawio[i]));
+          break;
+        case 'pen':
+          drawio.shapes.push(Object.assign(Object.create(Pen.prototype), savedDrawio[i]));
+          break;
+      }
     }
-//    drawio.shapes = Object.create()
+    drawCanvas();
   });
+
+
 
   function drawCanvas() {
     for (var i = 0; i < drawio.shapes.length; i++) {
-      //if(drawio.shapes[i].render() != null){
-          drawio.shapes[i].render();  //er að koma upp vesen
-      //}
+      drawio.shapes[i].render();
     }
     if (drawio.selectedElement) {
         drawio.selectedElement.render();
