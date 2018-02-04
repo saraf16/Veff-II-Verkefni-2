@@ -85,8 +85,6 @@ $(function() {
     drawCanvas();
   });
 
-
-
   function drawCanvas() {
     for (var i = 0; i < drawio.shapes.length; i++) {
       drawio.shapes[i].render();

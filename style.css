@@ -1,81 +1,81 @@
 body {
-  padding: 0;
-  margin: 0;
-  background-color: rgba(155, 155, 155, 0.2) !important;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(155, 155, 155, 0.2) !important;
 }
 
 .dropdown {
-  display: inline !important;
-  margin: 20px 2px 5px 10px !important;
+    display: inline !important;
+    margin: 20px 2px 5px 10px !important;
 }
 
 .dropdown button {
-  width: 100px;
+    width: 100px;
 }
 
 .dropdown-font {
-  width: 204px;
+    width: 204px;
 }
 
 .dropdown-font-size {
-  width: 100px;
+    width: 100px;
 }
 
 .dropdown-menu {
-  min-width: 1em !important;
+    min-width: 1em !important;
 }
 
 .inputCust {
-  margin-left: 35px !important;
+    margin-left: 35px !important;
 }
 
 .container {
-  padding: 20px;
+    padding: 20px;
 }
 
 #my-canvas {
-  background-color: white;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 1px 1px 1px;
+    background-color: white;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 1px 1px 1px;
 }
 
-.inputTextCust{
+.inputTextCust {
     font-size: 14px !important;
 }
 
 .icon {
-  position: relative;
-  display: inline-block;
-  font-size: 40px;
-  float: left;
-  width: 25px;
-  top: 10px;
-  margin-left: 36px;
-  transition: : color .5s;
+    position: relative;
+    display: inline-block;
+    font-size: 40px;
+    float: left;
+    width: 25px;
+    top: 10px;
+    margin-left: 36px;
+    transition: : color .5s;
 }
 
 .icon:hover {
-  color: orange;
-  cursor: pointer;
+    color: orange;
+    cursor: pointer;
 }
 
 .icon.selected {
-  color: yellow;
+    color: yellow;
 }
 
 .navbarr {
-  height: 80px;
-  background-color: rgba(50, 100, 200, 0.5);
-  border-bottom: solid 6px rgba(50, 100, 200, 1);
-  margin-bottom: 10px;
-  padding-left:220px;
+    height: 80px;
+    background-color: rgba(50, 100, 200, 0.5);
+    border-bottom: solid 6px rgba(50, 100, 200, 1);
+    margin-bottom: 10px;
+    padding-left: 220px;
 }
 
 .options {
-  margin-left: 220px;
+    margin-left: 220px;
 }
 
 #words {
-  width: 180px;
+    width: 180px;
 }
