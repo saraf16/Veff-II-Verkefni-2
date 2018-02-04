@@ -49,7 +49,8 @@ body {
     display: inline-block;
     font-size: 59px;
     float: left;
-    width: 77px;
+    width: 45px;
+    margin-left: 70px;
     transition: : color .5s;
 }
 
@@ -71,12 +72,12 @@ body {
 }
 
 .optionsLeft{
-    margin-left: 20px;
+    margin-left: 225px;
 }
 
 
 .optionsRight{
-    margin-left: 745px;
+    margin-left: 955px;
 }
 
 #words {
