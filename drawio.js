@@ -8,7 +8,6 @@ window.drawio = {
   selectedShape: 'pen',
   ctx: document.getElementById('my-canvas').getContext('2d'),
   canvas: document.getElementById('my-canvas'),
-  pic: document.getElementById('canvasImg').src = dataURL,
   selectColor : '#000000',
   selectText: ' ',
   selectFont: 'Helvetica',
@@ -78,7 +77,7 @@ $(function() {
     var savedDrawio = JSON.parse(localStorage.getItem('my-shapes'));
     console.log(savedDrawio);
     for (var i in savedDrawio) {
-      savedDrawio[i]
+      //savedDrawio[i]
     }
 //    drawio.shapes = Object.create()
   });
@@ -198,10 +197,11 @@ $(function() {
   $('#my-canvas').on('mouseup', function (mouseEvent) {
       if(drawio.selectedElement) {
         switch (drawio.selectedShape) {
-          case 'text':
+          case  drawio.availableShapes.TEXT:
             drawio.shapes.push(drawio.selectedElement);
+            //drawio.selectedElement = null;
           break;
-          case 'pen':
+          case drawio.availableShapes.PEN:
             drawio.shapes.push(drawio.selectedElement);
             drawio.selectedElement = null;
             drawio.pointx = [];
@@ -212,7 +212,5 @@ $(function() {
             drawio.selectedElement = null;
         }
       }
-
-      var dataURL = canvas.toDataURL();
   });
 });
