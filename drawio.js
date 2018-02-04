@@ -194,7 +194,6 @@ $(function() {
 
             }
         }
-      }
       drawCanvas();
     });
 
@@ -216,7 +215,6 @@ $(function() {
             }
         }
     });
->>>>>>> 8b343b8091c21a6151cd68d0627946df36487a7c
 
     $('#my-canvas').on('mouseout', function(mouseEvent) {
         if (drawio.selectedShape == 'pen') {
