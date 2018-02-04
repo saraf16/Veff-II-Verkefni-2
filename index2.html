@@ -2,130 +2,124 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>HTML5 Canvas</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel='stylesheet' href='http://bgrins.github.io/spectrum/spectrum.css' />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-
+    <meta charset="utf-8">
+    <title>HTML5 Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel='stylesheet' href='http://bgrins.github.io/spectrum/spectrum.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
-  <nav class="navbarr">
+    <nav class="navbarr">
 
-    <div class="icon shape" data-shape="rectangle">
-      <i class="fas fa-undo" aria-hidden="true"></i>
-    </div>
-    <div class="icon shape" data-shape="circle">
-      <i class="fa fa-circle-o" aria-hidden="true"></i>
-    </div>
-    <div class="icon shape" data-shape="line">
-      <i class="fa fa-window-minimize" aria-hidden="true"></i>
-    </div>
-    <div class="icon shape" data-shape="text">
-      <i class="fa fa-font" aria-hidden="true"></i>
-    </div>
-    <div class="icon selected shape" data-shape="pen">
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </div>
-    <div class="icon action" data-shape="undo">
-        <i class="fa fa-undo" aria-hidden="true"></i>
-    </div>
-    <div class="icon action" data-shape="redo">
-         <i class="fa fa-repeat" aria-hidden="true"></i>
-    </div>
-    <div class="icon action" data-shape="clear">
-      <i class="fa fa-trash" aria-hidden="true"></i>
-    </div>
-  </nav>
-  <div class='options'>
-    <div class="dropdown inputCust">
-      <input type='text' class="basic-color"/>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="icon shape" data-shape="rectangle">
+            <i class="fas fa-undo" aria-hidden="true"></i>
+        </div>
+        <div class="icon shape" data-shape="circle">
+            <i class="fa fa-circle-o" aria-hidden="true"></i>
+        </div>
+        <div class="icon shape" data-shape="line">
+            <i class="fa fa-window-minimize" aria-hidden="true"></i>
+        </div>
+        <div class="icon shape" data-shape="text">
+            <i class="fa fa-font" aria-hidden="true"></i>
+        </div>
+        <div class="icon selected shape" data-shape="pen">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+        </div>
+        <div class="icon action" data-shape="undo">
+            <i class="fa fa-undo" aria-hidden="true"></i>
+        </div>
+        <div class="icon action" data-shape="redo">
+            <i class="fa fa-repeat" aria-hidden="true"></i>
+        </div>
+        <div class="icon action" data-shape="clear">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+        </div>
+    </nav>
+    <div class='options'>
+        <div class="dropdown inputCust">
+            <input type='text' class="basic-color" />
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Font
       </button>
-      <div class="dropdown-menu dropdown-font" aria-labelledby="dropdownMenuFont">
-        <button class="dropdown-item font-item" type="button">Helevetica</button>
-        <button class="dropdown-item font-item" type="button">Times New Roman</button>
-        <button class="dropdown-item font-item" type="button">Verdana</button>
-        <button class="dropdown-item font-item" type="button">Arial</button>
-        <button class="dropdown-item font-item" type="button">Comic Sans MS</button>
+            <div class="dropdown-menu dropdown-font" aria-labelledby="dropdownMenuFont">
+                <button class="dropdown-item font-item" type="button">Helevetica</button>
+                <button class="dropdown-item font-item" type="button">Times New Roman</button>
+                <button class="dropdown-item font-item" type="button">Verdana</button>
+                <button class="dropdown-item font-item" type="button">Arial</button>
+                <button class="dropdown-item font-item" type="button">Comic Sans MS</button>
 
-      </div>
-    </div>
-    <div class="dropdown">
-    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuFont" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Font Size
     </button>
-    <div class="dropdown-menu dropdown-font-size" aria-labelledby="dropdownMenufontSize">
-      <button class="dropdown-item fontSize-item" type="button">9px </button>
-      <button class="dropdown-item fontSize-item" type="button">12px </button>
-      <button class="dropdown-item fontSize-item" type="button">14px </button>
-      <button class="dropdown-item fontSize-item" type="button">18px </button>
-      <button class="dropdown-item fontSize-item" type="button">24px </button>
-      <button class="dropdown-item fontSize-item" type="button">30px </button>
-      <button class="dropdown-item fontSize-item" type="button">36px </button>
-      <button class="dropdown-item fontSize-item" type="button">48px </button>
-      <button class="dropdown-item fontSize-item" type="button">60px </button>
-      <button class="dropdown-item fontSize-item" type="button">72px </button>
-      <button class="dropdown-item fontSize-item" type="button">96px </button>
-    </div>
-    <div class="dropdown">
-      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuLineWitdh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="dropdown-menu dropdown-font-size" aria-labelledby="dropdownMenufontSize">
+                <button class="dropdown-item fontSize-item" type="button">9px </button>
+                <button class="dropdown-item fontSize-item" type="button">12px </button>
+                <button class="dropdown-item fontSize-item" type="button">14px </button>
+                <button class="dropdown-item fontSize-item" type="button">18px </button>
+                <button class="dropdown-item fontSize-item" type="button">24px </button>
+                <button class="dropdown-item fontSize-item" type="button">30px </button>
+                <button class="dropdown-item fontSize-item" type="button">36px </button>
+                <button class="dropdown-item fontSize-item" type="button">48px </button>
+                <button class="dropdown-item fontSize-item" type="button">60px </button>
+                <button class="dropdown-item fontSize-item" type="button">72px </button>
+                <button class="dropdown-item fontSize-item" type="button">96px </button>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuLineWitdh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Line Width
       </button>
-      <div class="dropdown-menu dropdown-LineWidth" aria-labelledby="dropdownLineWidth-item">
-        <button class="dropdown-item lineWidth-item" type="button">1</button>
-        <button class="dropdown-item lineWidth-item" type="button">3</button>
-        <button class="dropdown-item lineWidth-item" type="button">5</button>
-        <button class="dropdown-item lineWidth-item" type="button">7</button>
-        <button class="dropdown-item lineWidth-item" type="button">9</button>
-        <button class="dropdown-item lineWidth-item" type="button">11</button>
-        <button class="dropdown-item lineWidth-item" type="button">13</button>
-        <button class="dropdown-item lineWidth-item" type="button">15</button>
-        <button class="dropdown-item lineWidth-item" type="button">17</button>
-        <button class="dropdown-item lineWidth-item" type="button">19</button>
-        <button class="dropdown-item lineWidth-item" type="button">21</button>
-      </div>
-    </div>
+                <div class="dropdown-menu dropdown-LineWidth" aria-labelledby="dropdownLineWidth-item">
+                    <button class="dropdown-item lineWidth-item" type="button">1</button>
+                    <button class="dropdown-item lineWidth-item" type="button">3</button>
+                    <button class="dropdown-item lineWidth-item" type="button">5</button>
+                    <button class="dropdown-item lineWidth-item" type="button">7</button>
+                    <button class="dropdown-item lineWidth-item" type="button">9</button>
+                    <button class="dropdown-item lineWidth-item" type="button">11</button>
+                    <button class="dropdown-item lineWidth-item" type="button">13</button>
+                    <button class="dropdown-item lineWidth-item" type="button">15</button>
+                    <button class="dropdown-item lineWidth-item" type="button">17</button>
+                    <button class="dropdown-item lineWidth-item" type="button">19</button>
+                    <button class="dropdown-item lineWidth-item" type="button">21</button>
+                </div>
+            </div>
 
-  </div>
-  <div class="dropdown">
-    <button class="btn btn-secondary btn-sm" id="save">
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-sm" id="save">
       <span class="fa fa-save"></span>
       Save
     </button>
-  </div>
-  <div class="dropdown">
-    <button class="btn btn-secondary btn-sm" id="load">
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary btn-sm" id="load">
       <span class="fa fa-upload"></span>
       Load
     </button></div>
-    <div class="dropdown inputTextCust">
-      <input type="hidden" autofocus="autofocus" id="words" placeholder="Type, then click canvas" />
+        <div class="dropdown inputTextCust">
+            <input type="hidden" autofocus="autofocus" id="words" placeholder="Type, then click canvas" />
+        </div>
     </div>
-  </div>
-  <div class="container">
-    <canvas id="my-canvas" width="930" height="600">
+    <div class="container">
+        <canvas id="my-canvas" width="930" height="600">
         Not supported
       </canvas>
-  </div>
+    </div>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- <script src="shapes.js" charset="utf-8"></script>
-  <script src="drawio.js" charset="utf-8"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
-  <script src='http://bgrins.github.io/spectrum/spectrum.js'></script>
-
-  <!--<script src="paint.js" charset="utf-8"></script> -->
-
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="shapes.js" charset="utf-8"></script>
+    <script src="drawio.js" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src='http://bgrins.github.io/spectrum/spectrum.js'></script>
 </body>
 
 </html>
