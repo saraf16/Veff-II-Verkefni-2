@@ -93,46 +93,47 @@ $(function() {
     }
   }
 
-  $('.icon').on('click', function() {
-    $('.icon').removeClass('selected');
+  $('.shape').on('click', function() {
+    $('.shape').removeClass('selected');
     $(this).addClass('selected');
     drawio.selectedShape = $(this).data('shape');
-    switch (drawio.selectedShape) {
-        case drawio.availableShapes.TEXT:
-            $('#words').attr('type', 'text');
-            drawio.selectText = ' ';
-            var fullWord = "";
-        break;
-        case drawio.availableShapes.UNDO:
-            console.log('undo');
-            drawio.undoBuffer.push(drawio.shapes.pop());
-            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-
-            for (var i = 0; i < drawio.shapes.length; i++) {
-              drawio.shapes[i].render();
-            }
-        break;
-        case drawio.availableShapes.REDO:
-            console.log('redo');
-            if (drawio.undoBuffer.length > 0) {
-              drawio.shapes.push(drawio.undoBuffer.pop());
-              drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            }
-            for (var j = 0; j < drawio.shapes.length; j++) {
-              drawio.shapes[j].render();
-            }
-        break;
-        case drawio.availableShapes.CLEAR:
-
-            drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            drawio.shapes = [];
-        break;
-        default:
-            console.log('falið');
-            $('#words').attr('type', 'hidden');
+    if (drawio.selectedShape == 'text') {
+      $('#words').attr('type', 'text');
+      drawio.selectText = ' ';
+      var fullWord = "";
+    }
+    else {
+      $('#words').attr('type', 'hidden');
     }
   });
 
+  $('.action').on('click', function() {
+    switch ($(this).data('shape')) {
+    case 'undo':
+        console.log('undo');
+        drawio.undoBuffer.push(drawio.shapes.pop());
+        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+        for (var i = 0; i < drawio.shapes.length; i++) {
+          drawio.shapes[i].render();
+        }
+    break;
+    case 'redo':
+        console.log('redo');
+        if (drawio.undoBuffer.length > 0) {
+          drawio.shapes.push(drawio.undoBuffer.pop());
+          drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+        }
+        for (var j = 0; j < drawio.shapes.length; j++) {
+          drawio.shapes[j].render();
+        }
+    break;
+    case 'clear':
+        drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+        drawio.shapes = [];
+        drawio.selectedElement = null;
+    break;
+  }
+  });
   //mousedown
   $('#my-canvas').on('mousedown', function (mouseEvent) {
     switch (drawio.selectedShape) {
@@ -176,7 +177,6 @@ $(function() {
 
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
-    console.log(mouseEvent);
     if(drawio.selectedElement) {
         if(drawio.selectedShape == 'pen'){
             console.log('pen');
@@ -202,7 +202,6 @@ $(function() {
         switch (drawio.selectedShape) {
           case 'text':
             drawio.shapes.push(drawio.selectedElement);
-            drawio.selectedElement = null;
           break;
           case 'pen':
             drawio.shapes.push(drawio.selectedElement);
