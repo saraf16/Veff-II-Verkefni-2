@@ -217,6 +217,7 @@ $(function() {
             drawio.selectedElement = null;
         }
       }
+      drawCanvas();
   });
 
   $('#my-canvas').on('mouseout', function (mouseEvent) {
