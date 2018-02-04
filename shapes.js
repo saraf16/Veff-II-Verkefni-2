@@ -11,20 +11,23 @@ Shape.prototype.move = function(position) {
   this.position = position;
 };
 
-//regtengl mun fa sina eigin af resize
+//rectangle mun fa sina eigin útgáfu af resize
 Shape.prototype.resize = function () {};
 
 function Rectangle(position, width, height) {
+  // köllum á consturctorinn í Shape
   Shape.call(this, position, this.color, this.lineWidth);
   this.width = width;
   this.height = height;
+  this.type = 'rectangle';
+
 }
 
 // assign the prototype
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
-//bara út filltir vantar fyrir ekki utfilta
+//óútfylltir
 Rectangle.prototype.render = function () {
   drawio.ctx.strokeStyle = this.color;
   drawio.ctx.lineWidth = this.lineWidth;
@@ -43,7 +46,7 @@ Rectangle.prototype.resize = function (x, y) {
 function Circle(position, radius) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.radius = radius;
-  console.log(radius);
+  this.type = 'circle';
 }
 
 Circle.prototype = Object.create(Shape.prototype);
@@ -67,6 +70,7 @@ function Line(position, xMoved, yMoved) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.yMoved = xMoved;
   this.yMoved = yMoved;
+  this.type = 'line';
 }
 
 Line.prototype = Object.create(Shape.prototype);
@@ -94,6 +98,7 @@ function Texxt(text, position, fontSize, font) {
   Shape.call(this, position, this.color);
   this.fontSize = fontSize;
   this.font = font;
+  this.type = 'text';
 }
 
 Texxt.prototype = Object.create(Shape.prototype);
@@ -101,7 +106,7 @@ Texxt.prototype.constructor = Texxt;
 
 Texxt.prototype.render = function () {
     drawio.ctx.fillStyle = this.color;
-    var res = this.fontSize + this.font;
+    var res = this.fontSize + " " + this.font;
     console.log(res);
     drawio.ctx.font = res;
     drawio.ctx.fillText(this.text , this.position.x, this.position.y,  930);
@@ -112,6 +117,7 @@ function Pen(position, xMoved, yMoved) {
   Shape.call(this, position, this.color, this.lineWidth);
   this.xMoved = xMoved;
   this.yMoved = yMoved;
+  this.type = 'pen';
 }
 
 Pen.prototype = Object.create(Shape.prototype);
