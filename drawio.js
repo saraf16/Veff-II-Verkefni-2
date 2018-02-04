@@ -48,7 +48,7 @@ $(function() {
 
   $('.fontSize-item').click(function() {
       drawio.selectFontSize = $(this).text();
-      console.log($(this).selectFontSize());
+      console.log($(this).selectFontSize);
   });
 
   $('#save').click(function() {
@@ -83,13 +83,13 @@ $(function() {
   });
 
   function drawCanvas() {
-    if (drawio.selectedElement) {
-        drawio.selectedElement.render();
-    }
     for (var i = 0; i < drawio.shapes.length; i++) {
       //if(drawio.shapes[i].render() != null){
           drawio.shapes[i].render();  //er að koma upp vesen
       //}
+    }
+    if (drawio.selectedElement) {
+        drawio.selectedElement.render();
     }
   }
 
@@ -176,20 +176,22 @@ $(function() {
 
   //mousemove
   $('#my-canvas').on('mousemove', function (mouseEvent) {
+    console.log(mouseEvent);
     if(drawio.selectedElement) {
         if(drawio.selectedShape == 'pen'){
             console.log('pen');
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
+            drawCanvas();
             drawio.pointx.push(mouseEvent.offsetX);
             drawio.pointy.push(mouseEvent.offsetY);
-            drawCanvas();
 
           }
           else {
             console.log('not pen');
             drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
-            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
             drawCanvas();
+            drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
+
           }
     }
   });
@@ -200,7 +202,7 @@ $(function() {
         switch (drawio.selectedShape) {
           case 'text':
             drawio.shapes.push(drawio.selectedElement);
-      //      drawio.selectedElement = null;
+            drawio.selectedElement = null;
           break;
           case 'pen':
             drawio.shapes.push(drawio.selectedElement);
@@ -214,4 +216,10 @@ $(function() {
         }
       }
   });
+
+  $('#my-canvas').on('mouseout', function (mouseEvent) {
+    if(drawio.selectedShape == 'pen') {
+      $('#my-canvas').mouseup();
+    }
+  })
 });
