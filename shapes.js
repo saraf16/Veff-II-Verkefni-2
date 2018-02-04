@@ -100,7 +100,7 @@ Texxt.prototype.constructor = Texxt;
 
 Texxt.prototype.render = function() {
     drawio.ctx.fillStyle = this.color;
-    var res = this.fontSize + " " + this.font;
+    var res = this.fontSize + this.font;
     drawio.ctx.font = res;
     drawio.ctx.fillText(this.text, this.position.x, this.position.y, 930);
 };

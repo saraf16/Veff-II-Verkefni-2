@@ -33,23 +33,19 @@ $(function() {
         color: drawio.selectColor,
         change: function(color) {
             drawio.selectColor = color.toHexString();
-            console.log(drawio.selectColor);
         }
     });
 
     $('.lineWidth-item').click(function() {
         drawio.selectLineWith = $(this).text();
-        console.log($(this).text());
     });
 
     $('.font-item').click(function() {
         drawio.selectFont = $(this).text();
-        console.log(drawio.selectFont);
     });
 
     $('.fontSize-item').click(function() {
         drawio.selectFontSize = $(this).text();
-        console.log($(this).selectFontSize);
     });
 
     $('#save').click(function() {
@@ -111,7 +107,6 @@ $(function() {
     $('.action').on('click', function() {
         switch ($(this).data('shape')) {
             case 'undo':
-                console.log('undo');
                 if (drawio.shapes.length > 0) {
                     drawio.undoBuffer.push(drawio.shapes.pop());
                     drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
@@ -121,7 +116,6 @@ $(function() {
                 }
                 break;
             case 'redo':
-                console.log('redo');
                 if (drawio.undoBuffer.length > 0) {
                     drawio.shapes.push(drawio.undoBuffer.pop());
                     drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
@@ -180,14 +174,12 @@ $(function() {
     $('#my-canvas').on('mousemove', function(mouseEvent) {
         if (drawio.selectedElement) {
             if (drawio.selectedShape == 'pen') {
-                console.log('pen');
                 drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
                 drawCanvas();
                 drawio.pointx.push(mouseEvent.offsetX);
                 drawio.pointy.push(mouseEvent.offsetY);
 
             } else {
-                console.log('not pen');
                 drawio.ctx.clearRect(0, 0, drawio.canvas.width, drawio.canvas.height);
                 drawCanvas();
                 drawio.selectedElement.resize(mouseEvent.offsetX, mouseEvent.offsetY);
